@@ -1,33 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [countryData, setCountryData] = useState([]);
+
+  const getCountryData =  () => {
+    fetch('http://localhost:8080/countries').then(response => response.json()).then(data => setCountryData([...data]))
+  }
+  
+  useEffect(()=>{
+    getCountryData()
+  },[])
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:8080/countries/${id}`,{ method: 'DELETE' }).then(response => console.log(response)).catch(err => console.log(err))
+  }
+
+  const handleEdit = (id) => {
+    console.log(id)
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Test</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Capital</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {countryData.map(country => (
+              <tr key={country.id}>
+                <td>{country.name}</td>
+                <td>{country.capital}</td>
+                <td onClick={(e) => handleEdit(country.id)}>Edit</td>
+                <td><button onClick={(e) => handleDelete(country.id)}>Delete</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
     </>
   )
 }

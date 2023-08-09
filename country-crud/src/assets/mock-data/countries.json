@@ -1,0 +1,44 @@
+{
+  "countries": [
+    {
+      "id": 2,
+      "name": "Canada",
+      "capital": "Ottawa"
+    },
+    {
+      "id": 3,
+      "name": "United Kingdom",
+      "capital": "London"
+    },
+    {
+      "id": 4,
+      "name": "France",
+      "capital": "Paris"
+    },
+    {
+      "id": 5,
+      "name": "Germany",
+      "capital": "Berlin"
+    },
+    {
+      "id": 6,
+      "name": "Japan",
+      "capital": "Tokyo"
+    },
+    {
+      "id": 8,
+      "name": "China",
+      "capital": "Beijing"
+    },
+    {
+      "id": 9,
+      "name": "Brazil",
+      "capital": "Brasília"
+    },
+    {
+      "id": 10,
+      "name": "India",
+      "capital": "New Delhi"
+    }
+  ]
+}
